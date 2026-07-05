@@ -42,7 +42,6 @@ def score_professional_tone(sentiment):
     else:
         return 5
 
-
 def score_confidence(wpm, fillers):
     score = 10
     if fillers > 30:
@@ -68,7 +67,7 @@ def generate_recommendation(overall):
         return "Significant Improvement Required"
 
 
-def evaluate_interview(metrics, total_fillers, sentiment):
+def evaluate_rule_based(metrics, total_fillers, sentiment):
     speaking = score_speaking_speed(
         metrics["Words Per Minute"]
     )

@@ -1,7 +1,5 @@
-from utils.qa_parser import extract_qa_pairs
-from utils.interview_builder import build_interview_json
-import json
-from utils.evaluator import evaluate_interview
+from utils.interview_context import build_context
+from utils.gemini_client import evaluate_with_gemini
 from utils.sentiment import analyze_sentiment
 from utils.filler_detector import detect_fillers
 from utils.whisper_utils import transcribe_audio, save_transcript
@@ -19,19 +17,6 @@ print(result["text"])
 
 save_transcript(result)
 
-qa_pairs = extract_qa_pairs(result["text"])
-
-print("\nQUESTION ANSWER PAIRS\n")
-
-for i, pair in enumerate(qa_pairs,1):
-    print("="*50)
-
-    print(f"Question {i}")
-    print(pair["question"],"\n")
-
-    print(pair["answer"])
-
-# Audio duration
 duration = round(result["segments"][-1]["end"], 2)
 
 metrics = calculate_metrics(result["text"], duration)
@@ -64,29 +49,12 @@ sentiment = analyze_sentiment(result["text"])
 for key, value in sentiment.items():
     print(f"{key}: {value}")
 
-qa_pairs = extract_qa_pairs(result["text"])
-
-interview_json = build_interview_json(
-    metrics,
-    total,
-    sentiment,
-    qa_pairs
-)
-
-print("\n==============================")
-print("STRUCTURED INTERVIEW JSON")
-print("==============================\n")
-
-print(json.dumps(interview_json, indent=4))
+context = build_context(result["text"],metrics,total,sentiment)
 
 print("\n======================================")
-print("INTERVIEW IQ REPORT")
+print("GEMINI EVALUATION")
 print("======================================\n")
 
-report = evaluate_interview(metrics, total, sentiment)
-for key, value in report.items():
-    if isinstance(value, (int, float)):
-        print(f"{key:<22} {value}/10" if key != "Overall Score"
-              else f"{key:<22} {value}/100")
-    else:
-        print(f"{key:<22} {value}")
+response = evaluate_with_gemini(context)
+
+print(response)

@@ -1,6 +1,8 @@
-def build_interview_json(metrics,fillers,sentiment,qa_pairs):
+def build_context(transcript,metrics,filler_count,sentiment):
 
-    interview = {
+    return {
+
+        "transcript": transcript,
 
         "speech_metrics": {
 
@@ -11,18 +13,12 @@ def build_interview_json(metrics,fillers,sentiment,qa_pairs):
                 metrics["Average Sentence Length"],
 
             "filler_words":
-                fillers,
+                filler_count,
 
             "sentiment":
                 sentiment["Sentiment"],
 
             "sentiment_confidence":
                 sentiment["Confidence (%)"]
-
-        },
-
-        "questions": qa_pairs
-
+        }
     }
-
-    return interview

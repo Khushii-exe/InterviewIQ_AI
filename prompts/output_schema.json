@@ -1,0 +1,48 @@
+{
+  "conversation_analysis": {
+    "summary": "Brief summary of the interview conversation.",
+    "speaker_identification_confidence": "High | Medium | Low",
+    "notes": []
+  },
+
+  "speech_analysis": {
+    "words_per_minute": 0,
+    "average_sentence_length": 0,
+    "filler_words": 0,
+    "sentiment": "",
+    "sentiment_confidence": 0
+  },
+
+  "question_evaluations": [
+    {
+      "question_number": 1,
+      "question": "",
+      "answer_summary": "",
+
+      "scores": {
+        "technical_correctness": 0,
+        "clarity": 0,
+        "completeness": 0,
+        "confidence": 0,
+        "professionalism": 0
+      },
+
+      "strengths": [],
+      "improvements": [],
+      "feedback": ""
+    }
+  ],
+
+  "overall_assessment": {
+
+    "communication": 0,
+    "technical_knowledge": 0,
+    "confidence": 0,
+    "professionalism": 0,
+    "overall_score": 0,
+    "strengths": [],
+    "areas_for_improvement": [],
+    "final_feedback": "",
+    "hiring_recommendation": ""
+  }
+}
