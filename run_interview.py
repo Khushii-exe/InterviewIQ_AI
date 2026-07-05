@@ -1,9 +1,11 @@
+import json
 from utils.interview_context import build_context
 from utils.gemini_client import evaluate_with_gemini
 from utils.sentiment import analyze_sentiment
 from utils.filler_detector import detect_fillers
 from utils.whisper_utils import transcribe_audio, save_transcript
 from utils.speech_metrics import calculate_metrics
+from utils.json_parser import parse_gemini_response
 
 audio_path = "audio/interview.mp3"
 
@@ -56,5 +58,6 @@ print("GEMINI EVALUATION")
 print("======================================\n")
 
 response = evaluate_with_gemini(context)
+report = parse_gemini_response(response)
 
-print(response)
+print(json.dumps(report, indent=4))
