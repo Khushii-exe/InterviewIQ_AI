@@ -1,3 +1,4 @@
+from utils.sentiment import analyze_sentiment
 from utils.filler_detector import detect_fillers
 from utils.whisper_utils import transcribe_audio, save_transcript
 from utils.speech_metrics import calculate_metrics
@@ -37,3 +38,12 @@ for word, count in fillers.items():
         print(f"{word}: {count}")
 
 print(f"\nTotal Filler Words: {total}")
+
+print("\n==============================")
+print("SENTIMENT ANALYSIS")
+print("==============================\n")
+
+sentiment = analyze_sentiment(result["text"])
+
+for key, value in sentiment.items():
+    print(f"{key}: {value}")
