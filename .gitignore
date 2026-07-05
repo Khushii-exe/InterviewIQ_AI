@@ -1,0 +1,21 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Output files
+outputs/*.txt
+outputs/*.json
+outputs/*.csv
+
+# Jupyter
+.ipynb_checkpoints/
