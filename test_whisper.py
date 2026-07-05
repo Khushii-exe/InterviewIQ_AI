@@ -1,3 +1,4 @@
+from utils.evaluator import evaluate_interview
 from utils.sentiment import analyze_sentiment
 from utils.filler_detector import detect_fillers
 from utils.whisper_utils import transcribe_audio, save_transcript
@@ -47,3 +48,15 @@ sentiment = analyze_sentiment(result["text"])
 
 for key, value in sentiment.items():
     print(f"{key}: {value}")
+
+print("\n======================================")
+print("INTERVIEW IQ REPORT")
+print("======================================\n")
+
+report = evaluate_interview(metrics, total, sentiment)
+for key, value in report.items():
+    if isinstance(value, (int, float)):
+        print(f"{key:<22} {value}/10" if key != "Overall Score"
+              else f"{key:<22} {value}/100")
+    else:
+        print(f"{key:<22} {value}")
