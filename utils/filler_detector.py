@@ -16,9 +16,7 @@ FILLER_WORDS = [
 def detect_fillers(transcript):
 
     text = transcript.lower()
-
     counts = {}
-
     total = 0
 
     for word in FILLER_WORDS:
